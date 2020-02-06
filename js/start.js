@@ -128,7 +128,7 @@ window.onresize = function () {
 	// $("#menuHTML").height($("#div_contenido").height() - 30);
 	// var nav = getBrowserInfo().split(" ")[0];
 	var design = 80;
-	if(getBrowserInfo().split(" ")[0] == "IE"){
+	if (getBrowserInfo().split(" ")[0] == "IE") {
 		design = 95;
 	}
 
@@ -406,19 +406,23 @@ if (debug) {
 	console.log(getBrowserInfo().split(" ")[0]);
 }
 function initialize() {
-
-	if (!detectarMovil()) { //bloquear curso si se detecta un navegador mobile 
-		// var myVar = setInterval(myTimer, 30);
-		setTimeout(inicializar, 2000);
-		setTimeout(function () {
-			clearInterval(myVar);
-		}, 1999);
-		window.onresize();
-	} else {
-		//Bloquear curso
-		$("#blocked").html("Este curso no es compatible con navegadores moviles, favor de lanzarlo en PC o Laptop. Error code: x00001");
-		$("#coursebl").css("display", "block");
-	}
+	setTimeout(inicializar, 2000);
+	setTimeout(function () {
+		clearInterval(myVar);
+	}, 1999);
+	window.onresize();
+	// if (!detectarMovil()) { //bloquear curso si se detecta un navegador mobile 
+	// 	// var myVar = setInterval(myTimer, 30);
+	// 	setTimeout(inicializar, 2000);
+	// 	setTimeout(function () {
+	// 		clearInterval(myVar);
+	// 	}, 1999);
+	// 	window.onresize();
+	// } else {
+	// 	//Bloquear curso
+	// 	$("#blocked").html("Este curso no es compatible con navegadores moviles, favor de lanzarlo en PC o Laptop. Error code: x00001");
+	// 	$("#coursebl").css("display", "block");
+	// }
 }
 function myTimer() {
 	document.getElementById("loaderText").innerHTML = "Cargando <br /> <br /> " + contador + "%";
@@ -855,7 +859,7 @@ function iniciar_tema(canvasTema) {
 		if (canvasContenido.timeline.duration > 1 && resp[1] == canvasContenido.timeline.duration) {
 			canvasContenido.gotoAndStop(resp[1] - 1);
 		}
-		
+
 		//se cambia el estado del tema a 1 lo que significa "tema iniciado"
 		if (TRAK[IDActual] < 1) {
 			TRAK[IDActual] = 1;
@@ -1105,7 +1109,7 @@ function Cierra_Sim() {
 		$('#div_sim').hide();
 		$('#div_vid').hide();
 		$('#div_contenido').fadeIn();
-		limpiarSim();
+		////limpiarSim();
 		//se habilita el boton atras
 		canvasBarra.habilitar_atras();
 		//el boton regresa a su icono de cerrar
@@ -1217,7 +1221,7 @@ function llamar_menuHTML() {
 
 	window.onresize();
 	actualizar_menuHTML(TRAK); // actualizar el menu
-	limpiarSim(); // se limpia la 
+	// ////limpiarSim(); // se limpia la 
 }
 
 function setMenuBlur(action) {
@@ -1255,7 +1259,7 @@ function llamar_Portada() {
 	//Carga en el contenido lo que se le esta ordenando
 	var portada = document.getElementById("Contenido");
 	portada.src = "temas/" + obj.NombreIntro + ".html";
-	limpiarSim();
+	////limpiarSim();
 }
 //Función para mostrar el preloader mientras carga el contenido
 /**
@@ -1281,7 +1285,7 @@ function cargarPortada() {
 	$('#div_sim').hide();
 	// $('#loader-wrapper').html("");
 	$('#div_vid').hide();
-	limpiarSim();
+	////limpiarSim();
 	ir(0);
 }
 //Función paraactualizar el menu y el estado de los temas
@@ -1608,9 +1612,9 @@ function habilitar_deshabilitar_eval(action) {
 	}
 
 }
-function partialdisabled(){
+function partialdisabled() {
 	$("#btnSiguiente").attr("disabled") = true;
-	setTimeout(function(){
+	setTimeout(function () {
 		$("#btnSiguiente").attr("disabled") = false;
 	}, 100);
 }
@@ -1624,13 +1628,13 @@ function partialdisabled(){
 function siguiente_frame() {
 	// console.log("estado del bloquepo")
 	// console.log(bloqueoSiguiente)
-	if(!bloqueoSiguiente){
+	if (!bloqueoSiguiente) {
 		bloqueoSiguiente = true;
 		habilitar_deshabilitar_btns(getBtnArray(btnSiguiente));
 		//Para ocultar o mostrar el canvas de siguiente frame o siguiente tema
 		if ($('#div_sim').show()) {
 			$('#div_sim').hide();// Esconder el iframe de las evaluaciones
-			limpiarSim();// Limpiar el frame de las simulaciones
+			////limpiarSim();// Limpiar el frame de las simulaciones
 		}
 		if (!EvalInProgress) {
 			if (pagActual < numPags - 1) { currentPagina += 1; ULTIMO = currentPagina; paginaSiguiente(); } // Avanza a la siguiente pagina 
@@ -1642,8 +1646,8 @@ function siguiente_frame() {
 		_root.Avance = _root.currentPagina > _root.Avance ? _root.currentPagina : _root.Avance;
 		actualizaTemasTerminados();
 
-		setTimeout(function(){
-			bloqueoSiguiente = false;			
+		setTimeout(function () {
+			bloqueoSiguiente = false;
 		}, 100);
 	}
 }
